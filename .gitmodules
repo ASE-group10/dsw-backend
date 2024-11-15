@@ -1,3 +1,20 @@
-[submodule "0"]
-	path = 0
+[submodule "reward-service"]
+	path = reward-service
+	url = git@github.com:ASE-group10/reward-service.git
+
+[submodule "environmental-data-service"]
+	path = environmental-data-service
+	url = git@github.com:ASE-group10/environmental-data-service.git
+
+[submodule "route-calculation-service"]
+	path = route-calculation-service
+	url = git@github.com:ASE-group10/route-calculation-service.git
+
+[submodule "real-time-incident-notification-service"]
+	path = real-time-incident-notification-service
+	url = git@github.com:ASE-group10/real-time-incident-notification-service.git
+
+[submodule "user-profile-information-store"]
+	path = user-profile-information-store
 	url = git@github.com:ASE-group10/user-profile-information-store.git
+
