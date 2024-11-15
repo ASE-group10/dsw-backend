@@ -1,3 +1,4 @@
+
 # Distributed System Backend (DSW Backend)
 
 This project contains the backend services for the Distributed System Wayfinding (DSW) application. Each microservice is organized as a submodule within this main repository. These microservices include the following:
@@ -8,15 +9,19 @@ This project contains the backend services for the Distributed System Wayfinding
 - `real-time-incident-notification-service`: Notifies users about incidents that may affect their routes.
 - `user-profile-information-store`: Manages user profile data and preferences.
 
+---
+
 ## Getting Started
 
 ### Prerequisites
 
 - Ensure you have Git installed.
 - Ensure you have a Java Development Kit (JDK) installed (version 11 or higher).
-- You may also need Maven installed to build and run each microservice.
+- Maven should be installed to build and run each microservice.
 
-### Cloning the Repository
+---
+
+## Cloning the Repository
 
 To clone this repository along with all submodules, use the following command:
 
@@ -25,50 +30,137 @@ git clone --recurse-submodules git@github.com:ASE-group10/dsw-backend.git
 cd dsw-backend
 ```
 
-If you've already cloned the repository without submodules, you can initialize and update the submodules separately as follows.
+If you've already cloned the repository without submodules, you can initialize and update the submodules separately:
+
+```bash
+git submodule init
+git submodule update
+```
+
+---
+
+## Managing Submodules
 
 ### Initializing and Updating Submodules
 
-If you need to set up submodules after cloning, or if submodules have been updated, use these commands:
-
-1. **Initialize and update all submodules** (for the first time setup):
+1. **Initialize and update all submodules** (for first-time setup):
 
    ```bash
    git submodule init
    git submodule update
    ```
 
-2. **Updating all submodules** (if there are changes to the submodules):
+2. **Update all submodules to their latest versions** (if submodules have been updated):
 
    ```bash
    git submodule update --remote
    ```
 
-### Running the Microservices
+---
+
+## Making Changes in a Submodule and Pushing to the Main Repository
+
+### Step 1: Navigate to the Submodule
+
+To make changes to a specific submodule, navigate to its directory. For example, to work on `reward-service`:
+
+```bash
+cd reward-service
+```
+
+### Step 2: Make Changes in the Submodule
+
+Edit files or add new ones as needed.
+
+### Step 3: Commit Changes in the Submodule
+
+Stage and commit the changes within the submodule repository:
+
+```bash
+git add .
+git commit -m "Your message describing the changes"
+```
+
+### Step 4: Push Changes to the Submodule's Remote Repository
+
+Push the changes to the submodule's repository:
+
+```bash
+git push origin main
+```
+
+### Step 5: Update the Submodule Reference in the Main Repository
+
+1. Navigate back to the main project directory:
+
+   ```bash
+   cd ..
+   ```
+
+2. Stage the updated submodule reference:
+
+   ```bash
+   git add reward-service
+   git commit -m "Updated submodule reward-service to the latest version"
+   ```
+
+3. Push the updated reference to the main repository:
+
+   ```bash
+   git push origin main
+   ```
+
+---
+
+## Example Workflow for Submodule Updates
+
+1. **Edit Code in a Submodule**:
+   - Navigate to the submodule directory (e.g., `reward-service`).
+   - Make changes, then commit and push them:
+
+     ```bash
+     cd reward-service
+     # Make your changes...
+     git add .
+     git commit -m "Fixed issue in reward calculation"
+     git push origin main
+     ```
+
+2. **Update Submodule Reference in the Main Repository**:
+   - Navigate back to the main repository, stage the submodule changes, and commit them:
+
+     ```bash
+     cd ..
+     git add reward-service
+     git commit -m "Updated submodule reward-service to latest commit"
+     git push origin main
+     ```
+
+3. **Collaborators Pull Updated Submodules**:
+   - Other collaborators will need to run the following commands to pull the latest changes in the main project and its submodules:
+
+     ```bash
+     git pull
+     git submodule update --remote
+     ```
+
+---
+
+## Running the Microservices
 
 Each microservice is a standalone Spring Boot application. To run a specific microservice:
 
-1. **Navigate to the microservice directory**, e.g., `reward-service`:
+1. Navigate to the microservice directory, e.g., `reward-service`:
 
    ```bash
    cd reward-service
    ```
 
-2. **Build and run** the microservice using Maven:
+2. Build and run the microservice using Maven:
 
    ```bash
    ./mvnw spring-boot:run
    ```
 
 Repeat these steps for each microservice as needed.
-
-### Updating Submodules
-
-When changes are made to the submodules, pull the latest updates using:
-
-```bash
-git submodule update --remote
-```
-
-This command will fetch the latest changes from each submodule's respective repository.
 
