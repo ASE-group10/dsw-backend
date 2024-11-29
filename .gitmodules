@@ -17,7 +17,3 @@
 [submodule "user-profile-information-store"]
 	path = user-profile-information-store
 	url = git@github.com:ASE-group10/user-profile-information-store.git
-
-[submodule "incident-company-service"]
-	path = incident-company-service
-	url = git@github.com:ASE-group10/incident-company-service.git
