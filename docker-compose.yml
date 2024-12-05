@@ -4,30 +4,30 @@ services:
   route-calculation-service:
     build:
       context: ./route-calculation-service
-    container_name: route-calculation-service
+    container_name: ${ROUTE_SERVICE_NAME}
     ports:
-      - "8080:8080"
+      - "${ROUTE_SERVICE_PORT}:8080"
     environment:
-      SPRING_APPLICATION_NAME: route-calculation-service
-      SERVER_PORT: 8080
-      LOGGING_LEVEL_ORG_SPRINGFRAMEWORK: INFO
-      USER_PROFILE_SERVICE_URL: http://user-profile-service:8080
-      INCIDENT_SERVICE_URL: http://notification-service:8080
-      ENVIRONMENTAL_DATA_SERVICE_URL: http://environmental-data-service:8081
+      SPRING_APPLICATION_NAME: ${ROUTE_SERVICE_NAME}
+      SERVER_PORT: ${ROUTE_SERVICE_PORT}
+      LOGGING_LEVEL_ORG_SPRINGFRAMEWORK: ${LOGGING_LEVEL_SPRING}
+      USER_PROFILE_SERVICE_URL: ${USER_PROFILE_SERVICE_URL}
+      INCIDENT_SERVICE_URL: ${INCIDENT_SERVICE_URL}
+      ENVIRONMENTAL_DATA_SERVICE_URL: ${ENVIRONMENTAL_DATA_SERVICE_URL}
 
   environmental-data-service:
     build:
       context: ./environmental-data-service
-    container_name: environmental-data-service
+    container_name: ${ENV_SERVICE_NAME}
     ports:
-      - "8081:8080"
+      - "${ENV_SERVICE_PORT}:8080"
     environment:
-      SPRING_APPLICATION_NAME: environmental-data-service
-      SPRING_DATASOURCE_URL: jdbc:postgresql://environmental-database:5432/environmental-data
-      SPRING_DATASOURCE_USERNAME: admin
-      SPRING_DATASOURCE_PASSWORD: admin
-      GEOJSON_URL: https://data.smartdublin.ie/dataset/4976e11e-a015-4ef9-9179-dc7c27fb5a81/resource/ec7f3108-c12b-4e07-b482-470f28f52aca/download/airview_dublincity_roaddata_ugm3
-      SPRING_JPA_HIBERNATE_DDL_AUTO: update
+      SPRING_APPLICATION_NAME: ${ENV_SERVICE_NAME}
+      SPRING_DATASOURCE_URL: ${ENV_DATASOURCE_URL}
+      SPRING_DATASOURCE_USERNAME: ${ENV_DATASOURCE_USERNAME}
+      SPRING_DATASOURCE_PASSWORD: ${ENV_DATASOURCE_PASSWORD}
+      GEOJSON_URL: ${GEOJSON_URL}
+      SPRING_JPA_HIBERNATE_DDL_AUTO: ${SPRING_JPA_HIBERNATE_DDL_AUTO}
     depends_on:
       - environmental-database
 
@@ -35,29 +35,29 @@ services:
     image: postgres:15
     container_name: environmental-database
     ports:
-      - "6543:5432"  # Host port 6543 mapped to container port 5432
+      - "${ENV_DB_PORT}:5432"
     environment:
-      POSTGRES_DB: environmental-data
-      POSTGRES_USER: admin
-      POSTGRES_PASSWORD: admin
+      POSTGRES_DB: ${ENV_DB_NAME}
+      POSTGRES_USER: ${ENV_DB_USER}
+      POSTGRES_PASSWORD: ${ENV_DB_PASSWORD}
     volumes:
       - env_db_data:/var/lib/postgresql/data
 
   notification-service:
     build:
       context: ./real-time-incident-notification-service
-    container_name: notification-service
+    container_name: ${NOTIF_SERVICE_NAME}
     ports:
-      - "8082:8080"
+      - "${NOTIF_SERVICE_PORT}:8080"
     environment:
-      SPRING_DATASOURCE_URL: jdbc:postgresql://notification-database:5432/real-time-notification-service
-      SPRING_DATASOURCE_USERNAME: postgres
-      SPRING_DATASOURCE_PASSWORD: real-time-notification-service
-      TWILIO_ACCOUNT_SID: your_account_sid
-      TWILIO_AUTH_TOKEN: your_auth_token
-      TWILIO_PHONE_NUMBER: +19876543210
-      DEMO_PHONE_NUMBER: +1234567890
-      SPRING_JPA_HIBERNATE_DDL_AUTO: update
+      SPRING_DATASOURCE_URL: ${NOTIF_DATASOURCE_URL}
+      SPRING_DATASOURCE_USERNAME: ${NOTIF_DATASOURCE_USERNAME}
+      SPRING_DATASOURCE_PASSWORD: ${NOTIF_DATASOURCE_PASSWORD}
+      TWILIO_ACCOUNT_SID: ${TWILIO_ACCOUNT_SID}
+      TWILIO_AUTH_TOKEN: ${TWILIO_AUTH_TOKEN}
+      TWILIO_PHONE_NUMBER: ${TWILIO_PHONE_NUMBER}
+      DEMO_PHONE_NUMBER: ${DEMO_PHONE_NUMBER}
+      SPRING_JPA_HIBERNATE_DDL_AUTO: ${SPRING_JPA_HIBERNATE_DDL_AUTO}
     depends_on:
       - notification-database
 
@@ -65,29 +65,29 @@ services:
     image: postgres:15
     container_name: notification-database
     ports:
-      - "7543:5432"  # Host port 7543 mapped to container port 5432
+      - "${NOTIF_DB_PORT}:5432"
     environment:
-      POSTGRES_DB: real-time-notification-service
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: real-time-notification-service
+      POSTGRES_DB: ${NOTIF_DB_NAME}
+      POSTGRES_USER: ${NOTIF_DB_USER}
+      POSTGRES_PASSWORD: ${NOTIF_DB_PASSWORD}
     volumes:
       - notification_db_data:/var/lib/postgresql/data
 
   user-profile-service:
     build:
-      context: ./user-profile-information-store
-    container_name: user-profile-service
+      context: ./user-profile-service
+    container_name: ${USER_SERVICE_NAME}
     ports:
-      - "8083:8080"
+      - "${USER_SERVICE_PORT}:8080"
     environment:
-      SPRING_DATASOURCE_URL: jdbc:postgresql://user-profile-database:5432/user-profile-information-store
-      SPRING_DATASOURCE_USERNAME: postgres
-      SPRING_DATASOURCE_PASSWORD: user-profile-information-store
-      AUTH0_CLIENT_ID: tmGAY4qxdv5KsNtk4rzTbLl1yinCwQH4
-      AUTH0_CLIENT_SECRET: 2hukdg7i-kp-LlCTofBx0--1wY_zaEZKReKZF5-zQ3PiBi8I9TvEwheMjJWX0xl3
-      AUTH0_DOMAIN: https://dev-6o86uui2n8dzxn5m.us.auth0.com
-      AUTH0_AUDIENCE: https://dev-6o86uui2n8dzxn5m.us.auth0.com/api/v2/
-      SPRING_JPA_HIBERNATE_DDL_AUTO: update
+      SPRING_DATASOURCE_URL: ${USER_DATASOURCE_URL}
+      SPRING_DATASOURCE_USERNAME: ${USER_DATASOURCE_USERNAME}
+      SPRING_DATASOURCE_PASSWORD: ${USER_DATASOURCE_PASSWORD}
+      AUTH0_CLIENT_ID: ${AUTH0_CLIENT_ID}
+      AUTH0_CLIENT_SECRET: ${AUTH0_CLIENT_SECRET}
+      AUTH0_DOMAIN: ${AUTH0_DOMAIN}
+      AUTH0_AUDIENCE: ${AUTH0_AUDIENCE}
+      SPRING_JPA_HIBERNATE_DDL_AUTO: ${SPRING_JPA_HIBERNATE_DDL_AUTO}
     depends_on:
       - user-profile-database
 
@@ -95,11 +95,11 @@ services:
     image: postgres:15
     container_name: user-profile-database
     ports:
-      - "8543:5432"  # Host port 8543 mapped to container port 5432
+      - "${USER_DB_PORT}:5432"
     environment:
-      POSTGRES_DB: user-profile-information-store
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: user-profile-information-store
+      POSTGRES_DB: ${USER_DB_NAME}
+      POSTGRES_USER: ${USER_DB_USER}
+      POSTGRES_PASSWORD: ${USER_DB_PASSWORD}
     volumes:
       - user_profile_db_data:/var/lib/postgresql/data
 
