@@ -6,7 +6,10 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="user-profile-information-store" />
         <module name="routecalc" />
+        <module name="real-time-incident-notification-service" />
+        <module name="reward-service" />
       </profile>
     </annotationProcessing>
   </component>
