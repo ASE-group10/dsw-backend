@@ -2,3 +2,4 @@
 # Environment and Secrets
 # ========================
 .env
+set_env.sh
