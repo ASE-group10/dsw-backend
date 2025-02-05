@@ -2,6 +2,7 @@
 <project version="4">
   <component name="VcsDirectoryMappings">
     <mapping directory="" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/dsw-commons" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/environmental-data-service" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/real-time-incident-notification-service" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/reward-service" vcs="Git" />
