@@ -9,6 +9,7 @@
         <option value="$PROJECT_DIR$/real-time-incident-notification-service/pom.xml" />
         <option value="$PROJECT_DIR$/environmental-data-service/pom.xml" />
         <option value="$PROJECT_DIR$/reward-service/pom.xml" />
+        <option value="$PROJECT_DIR$/dsw-commons/pom.xml" />
       </list>
     </option>
   </component>

@@ -17,3 +17,6 @@
 [submodule "user-profile-information-store"]
 	path = user-profile-information-store
 	url = git@github.com:ASE-group10/user-profile-information-store.git
+[submodule "dsw-commons"]
+	path = dsw-commons
+	url = git@github.com:ASE-group10/dsw-commons.git
