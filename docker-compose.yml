@@ -78,9 +78,11 @@ services:
     ports:
       - "${USER_SERVICE_PORT}:8080"
     environment:
+      SPRING_PROFILES_ACTIVE: local
       SPRING_DATASOURCE_URL: ${USER_DATASOURCE_URL}
       SPRING_DATASOURCE_USERNAME: ${USER_DATASOURCE_USERNAME}
       SPRING_DATASOURCE_PASSWORD: ${USER_DATASOURCE_PASSWORD}
+      USER_SERVICE_URL: http://${USER_SERVICE_NAME}:${USER_SERVICE_PORT}
       AUTH0_CLIENT_ID: ${AUTH0_CLIENT_ID}
       AUTH0_CLIENT_SECRET: ${AUTH0_CLIENT_SECRET}
       AUTH0_DOMAIN: ${AUTH0_DOMAIN}
@@ -100,6 +102,11 @@ services:
       POSTGRES_PASSWORD: ${USER_DB_PASSWORD}
     volumes:
       - user_profile_db_data:/var/lib/postgresql/data
+
+  pyroscope:
+    image: pyroscope/pyroscope:latest
+    ports:
+      - "4040:4040"
 
 volumes:
   env_db_data:
