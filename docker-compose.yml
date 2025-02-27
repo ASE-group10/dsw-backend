@@ -103,6 +103,33 @@ services:
     volumes:
       - user_profile_db_data:/var/lib/postgresql/data
 
+  reward-service:
+    build:
+      context: ./reward-service
+    container_name: ${REWARD_SERVICE_NAME}
+    ports:
+      - "${REWARD_SERVICE_PORT}:8080"
+    environment:
+      SPRING_APPLICATION_NAME: ${REWARD_SERVICE_NAME}
+      SPRING_DATASOURCE_URL: ${REWARD_DATASOURCE_URL}
+      SPRING_DATASOURCE_USERNAME: ${REWARD_DATASOURCE_USERNAME}
+      SPRING_DATASOURCE_PASSWORD: ${REWARD_DATASOURCE_PASSWORD}
+      SPRING_JPA_HIBERNATE_DDL_AUTO: ${SPRING_JPA_HIBERNATE_DDL_AUTO}
+    depends_on:
+      - reward-database
+
+  reward-database:
+    image: postgres:15
+    container_name: reward-database
+    ports:
+      - "${REWARD_DB_PORT}:5432"
+    environment:
+      POSTGRES_DB: ${REWARD_DB_NAME}
+      POSTGRES_USER: ${REWARD_DB_USER}
+      POSTGRES_PASSWORD: ${REWARD_DB_PASSWORD}
+    volumes:
+      - reward_db_data:/var/lib/postgresql/data
+
   pyroscope:
     image: pyroscope/pyroscope:latest
     ports:
@@ -112,3 +139,4 @@ volumes:
   env_db_data:
   notification_db_data:
   user_profile_db_data:
+  reward_db_data:
