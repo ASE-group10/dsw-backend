@@ -5,6 +5,9 @@ services:
     container_name: ${ROUTE_SERVICE_NAME}
     ports:
       - "${ROUTE_SERVICE_PORT}:8080"
+    volumes:
+      - ./route-calculation-service/src/main/resources/data/ireland-and-northern-ireland-latest.osm.pbf:/app/data/ireland-and-northern-ireland-latest.osm.pbf
+      - ./route-calculation-service/src/main/resources/gtfs:/app/gtfs
     environment:
       SPRING_APPLICATION_NAME: ${ROUTE_SERVICE_NAME}
       SERVER_PORT: ${ROUTE_SERVICE_PORT}
@@ -12,6 +15,8 @@ services:
       USER_PROFILE_SERVICE_URL: ${USER_PROFILE_SERVICE_URL}
       INCIDENT_SERVICE_URL: ${INCIDENT_SERVICE_URL}
       ENVIRONMENTAL_DATA_SERVICE_URL: ${ENVIRONMENTAL_DATA_SERVICE_URL}
+      OSM_FILE_PATH: /app/data/ireland-and-northern-ireland-latest.osm.pbf
+      GTFS_PATH: /app/gtfs
 
   environmental-data-service:
     build:
