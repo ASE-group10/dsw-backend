@@ -5,9 +5,6 @@ services:
     container_name: ${ROUTE_SERVICE_NAME}
     ports:
       - "${ROUTE_SERVICE_PORT}:8080"
-    volumes:
-      - ./route-calculation-service/src/main/resources/data/ireland-and-northern-ireland-latest.osm.pbf:/app/data/ireland-and-northern-ireland-latest.osm.pbf
-      - ./route-calculation-service/src/main/resources/gtfs:/app/gtfs
     environment:
       SPRING_APPLICATION_NAME: ${ROUTE_SERVICE_NAME}
       SERVER_PORT: ${ROUTE_SERVICE_PORT}
