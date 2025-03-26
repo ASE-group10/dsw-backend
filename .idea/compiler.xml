@@ -12,6 +12,7 @@
         <module name="dsw-commons" />
         <module name="reward-service" />
         <module name="environmental-data-service" />
+        <module name="route-planner" />
       </profile>
     </annotationProcessing>
   </component>
@@ -20,6 +21,7 @@
       <module name="environmental-data-service" options="-parameters" />
       <module name="real-time-incident-notification-service" options="-parameters" />
       <module name="reward-service" options="-parameters" />
+      <module name="route-planner" options="-parameters" />
       <module name="routecalc" options="-parameters" />
       <module name="user-profile-information-store" options="-parameters" />
     </option>
