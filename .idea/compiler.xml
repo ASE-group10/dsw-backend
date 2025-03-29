@@ -2,6 +2,7 @@
 <project version="4">
   <component name="CompilerConfiguration">
     <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
       <profile name="Maven default annotation processors profile" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
@@ -9,7 +10,6 @@
         <module name="user-profile-information-store" />
         <module name="routecalc" />
         <module name="real-time-incident-notification-service" />
-        <module name="dsw-commons" />
         <module name="reward-service" />
         <module name="environmental-data-service" />
       </profile>
