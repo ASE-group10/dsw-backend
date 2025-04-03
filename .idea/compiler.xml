@@ -10,6 +10,7 @@
         <module name="user-profile-information-store" />
         <module name="routecalc" />
         <module name="real-time-incident-notification-service" />
+        <module name="dsw-commons" />
         <module name="reward-service" />
         <module name="environmental-data-service" />
       </profile>
