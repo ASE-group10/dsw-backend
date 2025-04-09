@@ -151,6 +151,8 @@ services:
     environment:
       PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL}
       PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD}
+    volumes:
+      - pgadmin_data:/var/lib/pgadmin
     depends_on:
       - environmental-database
       - notification-database
@@ -168,6 +170,7 @@ services:
     command: server
 
 volumes:
+  pgadmin_data:
   env_db_data:
   notification_db_data:
   user_profile_db_data:
